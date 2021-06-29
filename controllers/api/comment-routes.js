@@ -4,11 +4,13 @@ const Comment = require('../../models/Comment');
 // route to create/add a post
 // '/api/comment'
 router.post('/', async (req, res) => {
-  console.log('you are in teh commentiing route')
+  console.log('you are in teh commentiing route');
+  // console.log(req)
   try {
     const commentData = await Comment.create({
       content: req.body.content,
-      username: req.body.creator_name,
+      user_id: req.body.user_id,
+      // blog_id: req.body.blog_id,
     });
     res.status(200).json(commentData);
   } catch (err) {
@@ -21,7 +23,8 @@ router.put('/:id', async (req, res) => {
     const commentData = await Comment.update(
       {
 		content: req.body.content,
-		username: req.body.username,
+		user_id: req.body.user_id,
+    blog_id: req.body.blog_id,
       },
       {
         where: {

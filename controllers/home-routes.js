@@ -40,4 +40,9 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// comment routing . . . don't need to go to a page can just be a text box with form submission
+router.get('/comment', (req, res) => {
+
+});
+
 module.exports = router;
