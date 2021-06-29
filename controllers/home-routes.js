@@ -40,6 +40,16 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// go to create blog post route
+router.get('/createblogpost', (req, res) => {
+  console.log('in create post route . . .')
+  if (req.session.logged_in) {
+    res.render('createblogpost');
+    return;
+  }
+
+});
+
 // comment routing . . . don't need to go to a page can just be a text box with form submission
 router.get('/comment', (req, res) => {
 
