@@ -1,38 +1,35 @@
 const router = require('express').Router();
-const Blogpost = require('../../models/Blogpost');
+const Comment = require('../../models/Comment');
 
 // route to create/add a post
-// '/api/blogpost'
+// '/api/comment'
 router.post('/', async (req, res) => {
-  console.log('you are in teh blog posting route')
+  console.log('you are in teh commentiing route')
   try {
-    const blogPostData = await Blogpost.create({
-      post_title: req.body.post_title,
+    const commentData = await Comment.create({
       content: req.body.content,
-      user_id: req.body.user_id,
+      username: req.body.creator_name,
     });
-    res.status(200).json(blogPostData);
+    res.status(200).json(commentData);
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-
 router.put('/:id', async (req, res) => {
   try {
-    const blogPostData = await Blogpost.update(
+    const commentData = await Comment.update(
       {
-		post_title: req.body.post_title,
 		content: req.body.content,
-    user_id: req.body.user_id,
-  },
+		username: req.body.username,
+      },
       {
         where: {
           id: req.params.id,
         },
       }
     );
-    res.status(200).json(blogPostData);
+    res.status(200).json(commentData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -41,7 +38,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
   try {
-    const blogPostData = await Blogpost.destroy({
+    const commentData = await Comment.destroy({
       where: {
         id: req.params.id
       }
@@ -50,7 +47,7 @@ router.delete('/:id', async (req, res) => {
       res.status(404).json({ message: 'No post found with this id!' });
       return;
     }
-    res.status(200).json(blogPostData);
+    res.status(200).json(commentData);
   } catch (err) {
     res.status(500).json(err);
   }
