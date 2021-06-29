@@ -1,9 +1,15 @@
+// const router = require('express').Router();
+
+
 async function newFormHandler(event) {
     event.preventDefault();
   
     const post_title = document.querySelector('#post_title').value;
     const content = document.querySelector('#content').value;
-    const user_id = document.querySelector('#user_id').value;
+    // const user_id = document.querySelector('#user_id').value;
+
+    // req.session.user_id = userData.id;
+    // const user_id = req.session.user_id;
   
     const response = await fetch(`/api/blogpost`, {
       method: 'POST',

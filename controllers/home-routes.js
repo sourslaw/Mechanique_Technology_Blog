@@ -41,8 +41,11 @@ router.get('/login', (req, res) => {
 });
 
 // go to create blog post route
-router.get('/createblogpost', (req, res) => {
-  console.log('in create post route . . .')
+// cannot go, unless logged in
+router.get('/createblogpost', withAuth, async (req, res) => {
+  console.log('in create post route . . .');
+
+
   if (req.session.logged_in) {
     res.render('createblogpost');
     return;

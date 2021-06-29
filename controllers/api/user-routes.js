@@ -1,5 +1,17 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Blogpost } = require('../../models');
+
+// GET all users (backend request)
+router.get('/', async (req,res) => {
+  try {
+    const userData = await User.findAll( { include: [{model: Blogpost}] } );
+  
+    res.status(200).json(userData);
+    
+    } catch (err) {
+      res.status(500).json(err);
+    }
+});
 
 // CREATE new user
 // 'api/users'
@@ -27,6 +39,9 @@ router.post('/login', async (req, res) => {
     console.log('in the login route');
     // Find the user who matches the posted e-mail address
     const userData = await User.findOne({ where: { email: req.body.email } });
+    console.log(userData);
+    console.log(userData.username);
+    // console.log(userData.user.dataValues.username);
 
     if (!userData) {
       res
