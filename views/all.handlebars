@@ -7,9 +7,13 @@
   {{#each blogPosts as |post|}}
   <div class="dish col-md-4">
     <p>
-      {{post.id}}.
-      {{post.post_title}}
+      {{post.id}}
     </p>
+    <a href="/blogpost/{{id}}">
+      <p>
+      {{post.post_title}}
+      </p>
+    </a>
 	<p>
       {{post.content}}
 	</p>
