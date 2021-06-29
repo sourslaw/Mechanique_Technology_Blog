@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { User } = require('../../models');
 
 // CREATE new user
+// 'api/users'
 router.post('/', async (req, res) => {
     try {
       const dbUserData = await User.create({
@@ -11,7 +12,7 @@ router.post('/', async (req, res) => {
       });
   
       req.session.save(() => {
-        req.session.loggedIn = true;
+        req.session.logged_in = true;
   
         res.status(200).json(dbUserData);
       });
@@ -23,6 +24,7 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
+    console.log('in the login route');
     // Find the user who matches the posted e-mail address
     const userData = await User.findOne({ where: { email: req.body.email } });
 

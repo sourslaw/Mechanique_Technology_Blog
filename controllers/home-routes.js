@@ -30,11 +30,12 @@ router.get('/blogpost/:id', async (req, res) => {
     };     
 });
 
+// login route
 router.get('/login', (req, res) => {
-  // if (req.session.logged_in) {
-  //   res.redirect('/');
-  //   return;
-  // }
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
 
   res.render('login');
 });

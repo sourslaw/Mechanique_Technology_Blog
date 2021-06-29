@@ -6,6 +6,14 @@
 </head>
 
 <body>
+  <nav>
+    <a href="/">Home</a>
+    {{!-- {{#if loggedIn}} --}}
+    <button id="logout" class="btn-no-style">Logout</button>
+    {{!-- {{else}} --}}
+    <a href="/login">Login</a>
+    {{!-- {{/if}} --}}
+  </nav>
   <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
       <h1>
@@ -16,6 +24,10 @@
         {{{ body }}}
       </main>
   </div>
+
+  {{!-- {{#if loggedIn}} --}}
+  <script src="/js/logout.js"></script>
+  {{!-- {{/if}} --}}
   </body>
 
 </html>
