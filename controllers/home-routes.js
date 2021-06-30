@@ -1,50 +1,60 @@
 const router = require('express').Router();
-const Blogpost = require('../models/Blogpost');
-const { User } = require('../models');
+const { Blogpost, User } = require('../models');
 const withAuth = require('../utils/auth');
 
-// route to get all blog posts
+  
+// get all blog posts / HOME route
 router.get('/', async (req, res) => {
-  const blogPostData = await Blogpost.findAll().catch((err) => { 
-    res.json(err);
-  });
-  const blogPosts = blogPostData.map((Blogpost) => Blogpost.get({ plain: true }));
-    res.render('all', { blogPosts });
-});
-  
-// route to get one blog post
-router.get('/blogpost/:id', async (req, res) => {
-  try{ 
-    const blogPostData = await Blogpost.findByPk(req.params.id);
-  
-      if(!blogPostData) {
-          res.status(404).json({message: 'No post with this id!'});
-        return;
-      }
-  
-    const blogPost = blogPostData.get({ plain: true });
-      res.render('blogpost', blogPost);
-  
-    } catch (err) {
-        es.status(500).json(err);
-    };     
-});
-
-// login route
-router.get('/login', (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect('/');
-    return;
+  try {
+    // Get all projects and JOIN with user data
+    const blogPostData = await Blogpost.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ],
+    });
+    // Serialize data so the template can read it
+    const blogposts = blogPostData.map((blogpost) => blogpost.get({ plain: true }));
+    // Pass serialized data and session flag into template
+    res.render('all', { 
+      blogposts, 
+      logged_in: req.session.logged_in 
+    });
+  } catch (err) {
+    res.status(500).json(err);
   }
-
-  res.render('login');
 });
 
-// go to create blog post route
-// cannot go, unless logged in
+// individual blog post route
+router.get('/blogpost/:id', async (req, res) => {
+  try {
+    const blogPostData = await Blogpost.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ],
+    });
+
+    const blogpost = blogPostData.get({ plain: true });
+
+    res.render('blogpost', {
+      ...blogpost,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
+// go to create blog post route: cannot go, unless logged in (protected route)
 router.get('/createblogpost', withAuth, async (req, res) => {
   console.log('in create post route . . .');
-
 
   if (req.session.logged_in) {
     res.render('createblogpost');
@@ -54,8 +64,25 @@ router.get('/createblogpost', withAuth, async (req, res) => {
 });
 
 // comment routing . . . don't need to go to a page can just be a text box with form submission
-router.get('/comment', (req, res) => {
+router.get('/comment', withAuth, async (req, res) => {
+  console.log('in commenting route . . .');
 
+  if (req.session.logged_in) {
+    // res.render('createblogpost');
+    return;
+  }
+
+});
+
+
+// login route. If the user is already logged in, redirect the request to another route
+router.get('/login', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('login');
 });
 
 module.exports = router;

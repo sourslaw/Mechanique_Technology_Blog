@@ -1,34 +1,46 @@
 <div class="dish-card">
+
   <div class="dish-card-header">
-    {{post_title}}
+    <p>title: {{ post_title }}</p>
   </div>
+
   <div class="card-body">
-    <p>
-      content:
-      {{content}}
-    </p>
-    <p>
-      creator:
-      {{user_id}}
-      <p>{{ userData.username }}</p>
-    </p>
-    {{!-- <p>
-      Username
-      {{username}}
-    </p> --}}
+    <p>content: {{ content }}</p>
+    <p>creator: {{ user_id }}</p>
+    <p>created: {{ createdAt }}</p>
+
+    <p>username: {{ username }}</p>
+
   </div>
+
 </div>
 
-  <div>
-    <form class="form comment-form">
-    <textarea id="commentHole"></textarea>
-      <div class="form comment-form">
-        <button class="btn btn-primary" type="submit">comment</button>
-      </div>    
-    </form>
+<h3>comment form</h3>
+<div>
+  <form class="form comment-form">
 
+    <label for="commentHole">comment:</label>
+    <textarea id="commentHole" rows="2" cols="30"></textarea>
+    <br/>
+
+    <label for="user_id">user id:</label>
+    <textarea id="user_id" name="user_id" rows="2" cols="20">{{user_id}}</textarea>
+
+    <button class="btn btn-primary" type="submit">comment</button>
+
+  </form>
+</div>
+
+<h3>comments display</h3>
+{{#each comment as |comment|}}
+
+  <div class="dish col-md-4">
+    <p>{{ comment.content }}</p>
+    <p>{{ comment.user_id }}</p>
   </div>
 
+{{/each}}
 
 
-  <script src="./js/comment.js"></script>
+
+{{!-- <script src="./js/comment.js"></script> --}}

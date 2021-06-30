@@ -6,7 +6,7 @@ async function newFormHandler(event) {
   
     const post_title = document.querySelector('#post_title').value;
     const content = document.querySelector('#content').value;
-    // const user_id = document.querySelector('#user_id').value;
+    const user_id = document.querySelector('#user_id').value;
 
     // req.session.user_id = userData.id;
     // const user_id = req.session.user_id;
@@ -24,11 +24,11 @@ async function newFormHandler(event) {
     });
   
     if (response.ok) {
-      document.location.replace('/');
+      document.location.replace('/'); // the next page that displays after the form is submitted. in this case, the home page
     } else {
       alert('Failed to crate post');
     }
-  }
+  };
   
   document
     .querySelector('.new-post-form')

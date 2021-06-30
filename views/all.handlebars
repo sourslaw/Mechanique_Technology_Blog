@@ -4,24 +4,24 @@
       Current posts
     </h2>
   </div>
-  {{#each blogPosts as |post|}}
+  {{#each blogposts as |blogpost|}}
   <div class="dish col-md-4">
     <p>
-      {{post.id}}
+      {{blogpost.id}}
     </p>
     <a href="/blogpost/{{id}}">
       <p>
-      {{post.post_title}}
+      {{blogpost.post_title}}
       </p>
     </a>
 	<p>
-      {{post.content}}
+      {{blogpost.content}}
 	</p>
   </div>
   <div class="col-md-5">
     <p>
       person:
-      {{post.user_id}}
+      {{blogpost.user_id}}
     </p>
   </div>
   {{/each}}

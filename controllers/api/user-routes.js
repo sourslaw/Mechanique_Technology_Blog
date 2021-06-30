@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { User, Blogpost } = require('../../models');
+const { User, Blogpost, Comment } = require('../../models');
 
 // GET all users (backend request)
 router.get('/', async (req,res) => {
   try {
-    const userData = await User.findAll( { include: [{model: Blogpost}] } );
+    const userData = await User.findAll( { include: [{model: Blogpost}, {model: Comment}] } );
   
     res.status(200).json(userData);
     
@@ -13,8 +13,7 @@ router.get('/', async (req,res) => {
     }
 });
 
-// CREATE new user
-// 'api/users'
+// CREATE new user: 'api/users'
 router.post('/', async (req, res) => {
     try {
       const dbUserData = await User.create({
@@ -24,6 +23,7 @@ router.post('/', async (req, res) => {
       });
   
       req.session.save(() => {
+        req.session.user_id = userData.id;
         req.session.logged_in = true;
   
         res.status(200).json(dbUserData);
@@ -39,8 +39,9 @@ router.post('/login', async (req, res) => {
     console.log('in the login route');
     // Find the user who matches the posted e-mail address
     const userData = await User.findOne({ where: { email: req.body.email } });
+
     console.log(userData);
-    console.log(userData.username);
+    console.log(`USER N A M E: ${userData.username}`);
     // console.log(userData.user.dataValues.username);
 
     if (!userData) {
@@ -49,7 +50,6 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
-
     // Verify the posted password with the password store in the database
     const validPassword = await userData.checkPassword(req.body.password);
 
@@ -59,7 +59,6 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
-
     // Create session variables based on the logged in user
     req.session.save(() => {
       req.session.user_id = userData.id;
