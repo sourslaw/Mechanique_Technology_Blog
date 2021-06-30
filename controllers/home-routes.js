@@ -50,19 +50,6 @@ router.get('/blogpost/:id', async (req, res) => {
   }
 });
 
-
-
-// OLD go to create blog post route: cannot go, unless logged in (protected route)
-// router.get('/createblogpost', withAuth, async (req, res) => {
-//   console.log('in create post route . . .');
-
-//   if (req.session.logged_in) {
-//     res.render('createblogpost');
-//     return;
-//   }
-
-// });
-
 // new createpost route (also, user's profile route). Use withAuth middleware to prevent access to route
 router.get('/createblogpost', withAuth, async (req, res) => {
   try {

@@ -1,29 +1,20 @@
 <div class="menu-container">
   <div class="card-header col-md-12 text-center">
-    <h2>
-      Current posts
-    </h2>
+    <h2>current posts</h2>
   </div>
+
   {{#each blogposts as |blogpost|}}
+
+    <h2>title: <a href="/blogpost/{{id}}">{{ blogpost.post_title }}</a></h2>
+    <p>blogpost id: {{ blogpost.id }}</p>
+    <p>by: {{ blogpost.user.username }}</p>
+
   <div class="dish col-md-4">
-    <p>
-      {{blogpost.id}}
-    </p>
-    <a href="/blogpost/{{id}}">
-      <p>
-      {{blogpost.post_title}}
-      </p>
-    </a>
-	<p>
-      {{blogpost.content}}
-	</p>
+    <p>{{blogpost.content}}</p>
   </div>
-  <div class="col-md-5">
-    <p>
-      person:
-      {{blogpost.user_id}}
-    </p>
-  </div>
+
   {{/each}}
+
+</div>
 
 {{!-- <script src="/js/add-blogPost.js"></script> --}}

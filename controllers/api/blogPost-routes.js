@@ -1,8 +1,6 @@
 const router = require('express').Router();
-// const Blogpost = require('../../models/Blogpost');
-
 const { User, Blogpost } = require('../../models');
-
+const withAuth = require('../../utils/auth');
 
 
 // GET all blog posts (backend request)
@@ -53,18 +51,21 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
-  // delete one product by its `id` value
+// individual post delete route
+router.delete('/:id', withAuth, async (req, res) => {
   try {
     const blogPostData = await Blogpost.destroy({
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+        user_id: req.session.user_id,
+      },
     });
-    if (!tagData) {
-      res.status(404).json({ message: 'No post found with this id!' });
+
+    if (!blogPostData) {
+      res.status(404).json({ message: 'No ppost found with this id!' });
       return;
     }
+
     res.status(200).json(blogPostData);
   } catch (err) {
     res.status(500).json(err);

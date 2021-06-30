@@ -1,7 +1,6 @@
 // const router = require('express').Router();
 
-
-async function newFormHandler(event) {
+const newFormHandler = async (event) => {
     event.preventDefault();
   
     const post_title = document.querySelector('#post_title').value;
@@ -29,8 +28,28 @@ async function newFormHandler(event) {
       alert('Failed to crate post');
     }
   };
+
+const delButtonHandler = async (event) => {
+  if (event.target.hasAttribute('data-id')) {
+    const id = event.target.getAttribute('data-id');
+
+    const response = await fetch(`/api/blogpost/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (response.ok) {
+      document.location.replace('/createblogpost');
+    } else {
+      alert('Failed to delete post');
+    }
+  }
+};
   
-  document
-    .querySelector('.new-post-form')
-    .addEventListener('submit', newFormHandler);
+document
+  .querySelector('.new-post-form')
+  .addEventListener('submit', newFormHandler);
+
+document
+  .querySelector('.blogpost-list')
+  .addEventListener('click', delButtonHandler);
   
