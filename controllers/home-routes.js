@@ -52,16 +52,37 @@ router.get('/blogpost/:id', async (req, res) => {
 
 
 
-// go to create blog post route: cannot go, unless logged in (protected route)
+// OLD go to create blog post route: cannot go, unless logged in (protected route)
+// router.get('/createblogpost', withAuth, async (req, res) => {
+//   console.log('in create post route . . .');
+
+//   if (req.session.logged_in) {
+//     res.render('createblogpost');
+//     return;
+//   }
+
+// });
+
+// new createpost route (also, user's profile route). Use withAuth middleware to prevent access to route
 router.get('/createblogpost', withAuth, async (req, res) => {
-  console.log('in create post route . . .');
+  try {
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Blogpost }],
+    });
 
-  if (req.session.logged_in) {
-    res.render('createblogpost');
-    return;
+    const user = userData.get({ plain: true });
+
+    res.render('createblogpost', {
+      ...user,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
   }
-
 });
+
 
 // comment routing . . . don't need to go to a page can just be a text box with form submission
 router.get('/comment', withAuth, async (req, res) => {
@@ -73,6 +94,7 @@ router.get('/comment', withAuth, async (req, res) => {
   }
 
 });
+
 
 
 // login route. If the user is already logged in, redirect the request to another route
