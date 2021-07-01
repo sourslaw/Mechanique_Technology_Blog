@@ -1,6 +1,6 @@
 <div class="new-post-form">
   <h2>
-    CREATE pOST {{username}}
+    CREATE pOST {{username}}, id: {{id}}
   </h2>
   <form class="new-post-form">
     <label for="post_title">
@@ -19,13 +19,13 @@
       {{content}}
     </textarea>
     <br />
-    <label for="user_id">
+    {{!-- <label for="user_id">
       user id:
     </label>
     <br />
     <textarea id="user_id" name="user_id" rows="2" cols="30">
-      {{user_id}}
-    </textarea>
+      {{id}}
+    </textarea> --}}
     <br />
     <br />
     <br />
@@ -37,12 +37,12 @@
 
 {{#if blogposts.length}}
   <div class="col-md-6 blogpost-list">
-    <h3>Current Projects:</h3>
+    <h3>your posts:</h3>
 
     {{#each blogposts as |blogpost|}}
     <div class="row mb-2">
       <div class="col-md-8">
-        <h4><a href="/project/{{blogpost.id}}">{{blogpost.post_title}}</a></h4>
+        <h4><a href="/blogpost/{{blogpost.id}}">{{blogpost.post_title}}</a></h4>
       </div>
       <div class="col-md-4">
         <button class="btn btn-sm btn-danger" data-id="{{blogpost.id}}">DELETE</button>

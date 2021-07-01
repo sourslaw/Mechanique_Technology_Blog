@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Blogpost } = require('../../models');
+const { User, Blogpost, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
@@ -14,6 +14,28 @@ router.get('/', async (req,res) => {
       res.status(500).json(err);
     }
 });
+
+router.get('/:id', async (req, res) => {
+
+  try {
+    const blogpostData = await Blogpost.findByPk(req.params.id, {
+      include: [{ model: User }, { model: Comment }]
+
+    });
+
+    if (!blogpostData) {
+      res.status(404).json({ message: 'No blog found with this id!' });
+      return;
+    }
+
+    res.status(200).json(blogpostData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
 
 // route to create/add a post: '/api/blogpost'
 router.post('/', async (req, res) => {
