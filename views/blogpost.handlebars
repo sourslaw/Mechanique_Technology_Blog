@@ -5,7 +5,7 @@
   </div>
 
   <div class="card-body">
-    <p>blogpost id: {{ id }}</p>
+    <p>blogpost id: <span>{{ id }}</span></p>
     <p>content: {{ content }}</p>
     <p>creator: {{ user_id }}</p>
     <p>created: {{ createdAt }}</p>
@@ -23,8 +23,12 @@
     <label for="commentHole">comment:</label>
     <textarea id="commentHole" rows="2" cols="30"></textarea>
 
-        <label for="bpId">blog post id:</label>
-    <textarea id="bpId" rows="2" cols="30"></textarea>
+    {{!-- <label for="uId">user id:</label>
+    <textarea id="uId" rows="2" cols="30"></textarea> --}}
+    <label for="bpId">blog post id:</label>
+    <textarea id="bpId" rows="1" cols="10">{{ id }}</textarea>
+
+	{{!-- <p id="bpId">{{ id }}</p> --}}
     <br/>
 
     {{!-- <label for="user_id">user id:</label>
@@ -37,7 +41,9 @@
 
 {{!-- try one --}}
 <h3>comments display</h3>
+{{!-- <div>{{ comments.content }}</div> --}}
 {{#each comments as |comment|}}
+{{!-- {{#each this}} --}}
 
   <div class="dish col-md-4">
     <p>{{ comment.content }}</p>

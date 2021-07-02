@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Blogpost, User } = require('../models');
+const { Blogpost, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
   
@@ -49,6 +49,39 @@ router.get('/blogpost/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// T E S Ting render comments too
+router.get('/blogpost/:id', async (req, res) => {
+	try {
+	  const blogPostData = await Blogpost.findByPk(req.params.id, {
+		include: [
+
+		  {
+			model: Comment,
+			attributes: ['id, content, user_id'],
+			include: {
+				model: User,
+				attributes: ['username']
+			}
+		  },
+		  {
+			model: User,
+			attributes: ['username'],
+		  },
+		],
+	  });
+  
+	  const blogpost = blogPostData.get({ plain: true });
+  
+	  res.render('blogpost', {
+		...blogpost,
+		logged_in: req.session.logged_in
+	  });
+
+	} catch (err) {
+	  res.status(500).json(err);
+	}
+  });
 
 // new createpost route (also, user's profile route). Use withAuth middleware to prevent access to route
 router.get('/createblogpost', withAuth, async (req, res) => {
