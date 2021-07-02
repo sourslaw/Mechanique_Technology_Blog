@@ -2,7 +2,6 @@ const router = require('express').Router();
 const { Blogpost, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
-  
 // get all blog posts / HOME route
 router.get('/', async (req, res) => {
   try {
@@ -27,80 +26,21 @@ router.get('/', async (req, res) => {
   }
 });
 
-// individual blog post route
-// router.get('/blogpost/:id', async (req, res) => {
-//   try {
-//     const blogPostData = await Blogpost.findByPk(req.params.id, {
-//       include: [
-//         {
-//           model: User,
-//           attributes: ['username'],
-//         },
-//       ],
-//     });
-
-//     const blogpost = blogPostData.get({ plain: true });
-
-//     res.render('blogpost', {
-//       ...blogpost,
-//       logged_in: req.session.logged_in
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-// T E S Ting render comments too
-// router.get('/blogpost/:id', async (req, res) => {
-// 	try {
-// 	  const blogPostData = await Blogpost.findByPk(req.params.id, {
-// 		include: [
-
-// 		  {
-// 			model: User,
-// 			attributes: ['username'],
-// 		  },
-
-// 		//   {
-// 		// 	model: Comment,
-// 		// 	attributes: ['id, content'],
-// 		// 	// include: {
-// 		// 	// 	model: User,
-// 		// 	// 	attributes: ['username']
-// 		// 	// }
-// 		//   },
-
-// 		],
-// 	  });
-  
-// 	  const blogpost = blogPostData.get({ plain: true });
-  
-// 	  res.render('blogpost', {
-// 		...blogpost,
-// 		logged_in: req.session.logged_in
-// 	  });
-
-// 	} catch (err) {
-// 	  res.status(500).json(err);
-// 	}
-//   });
-
-// TESTING render commetn THREE
+// render ind. post W/ comments
 router.get('/blogpost/:id', async (req, res) => {
 	try {
 	  const blogPostData = await Blogpost.findByPk(req.params.id, {
-		include: [ { model: Comment }, ],
+		include: [ { model: Comment, }, { model: User, attributes: ['username'] }],
 	  });
   
 	  const blogpost = blogPostData.get({ plain: true });
   
-	  res.render('blogpost', { blogpost });
+	  res.render('blogpost', { ...blogpost, logged_in: req.session.logged_in });
 
 	} catch (err) {
 	  res.status(500).json(err);
 	}
   });
-
 
 // new createpost route (also, user's profile route). Use withAuth middleware to prevent access to route
 router.get('/createblogpost', withAuth, async (req, res) => {
@@ -122,7 +62,6 @@ router.get('/createblogpost', withAuth, async (req, res) => {
   }
 });
 
-
 // comment routing . . . don't need to go to a page can just be a text box with form submission
 router.get('/comment', withAuth, async (req, res) => {
   console.log('in commenting route . . .');
@@ -133,7 +72,6 @@ router.get('/comment', withAuth, async (req, res) => {
   }
 
 });
-
 
 
 // login route. If the user is already logged in, redirect the request to another route

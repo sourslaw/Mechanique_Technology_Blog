@@ -34,34 +34,33 @@
   </form>
 </div>
 
-{{!-- try one --}}
-<h3>comments display</h3>
-    {{> comment-detail}}
 
-{{#each blogpost.comment as |comments|}}
+{{!-- COMMENTS --}}
+<h3>comments display 2</h3>
 
-  <div class="dish col-md-4">
-    <p>{{ comment.content }}</p>
-    <p>{{ comments.user_id }}</p>
-  </div>
-
-{{/each}}
-
-{{!-- try two --}}
 {{#if comments.length}}
   <div class="col-md-6 blogpost-list">
-    <h3>Current Projects:</h3>
+
+    <h3>recent comments:</h3>
 
     {{#each comments as |comment|}}
+
     <div class="row mb-2">
       <div class="col-md-8">
-        <h4><a href="/project/{{comment.id}}">{{comment.content}}</a></h4>
+        <p>comment: {{ comment.content }}</p>
+		<p>by (user id): {{ comment.user_id }}</p>
+		<p>by (user id): {{ comment.createdAt }}</p>
+
+		<p>by (username): {{ comment.user.id }}</p>
+		<p>by (username): {{ comment.user.username }}</p>
       </div>
       <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{comment.id}}">DELETE</button>
+        {{#if loggedIn}} <button class="btn btn-sm btn-danger" data-id="{{ comment.id }}">DELETE</button> {{/if}}
       </div>
     </div>
+
     {{/each}}
+
   </div>
 {{/if}}
 
