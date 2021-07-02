@@ -1,15 +1,18 @@
 // comment form shit
-const commentHandler = async (event) => {
+const newCommentHandler = async (event) => {
     event.preventDefault();
 
+    console.log(' IN THE COMMENT ROUTE, YO UCLICKED IT AND IT DID A THING')
+
     const content = document.querySelector('#commentHole').value;
-    const user_id = document.querySelector('#user_id').value;
+    const bpId = document.querySelector('#bpId').value;
+
 
     const response = await fetch('/api/comment', {
         method: 'POST',
         body: JSON.stringify({
           content,
-          user_id
+          bpId,
         }),
         headers: { 'Content-Type': 'application/json' },
       });
@@ -20,10 +23,9 @@ const commentHandler = async (event) => {
         alert('Failed to maker a da commenting');
       }
 
-    // console.log('in the comment hole.JS');
     // console.log(comment);
 };
 
-// document
-//     .querySelector('.comment-form')
-//     .addEventListener('submit', commentHandler);
+document
+  .querySelector('.new-comment-form')
+  .addEventListener('submit', newCommentHandler);

@@ -5,6 +5,7 @@
   </div>
 
   <div class="card-body">
+    <p>blogpost id: {{ id }}</p>
     <p>content: {{ content }}</p>
     <p>creator: {{ user_id }}</p>
     <p>created: {{ createdAt }}</p>
@@ -17,16 +18,19 @@
 
 <h3>comment form</h3>
 <div>
-  <form class="form comment-form">
+  <form class="form new-comment-form">
 
     <label for="commentHole">comment:</label>
     <textarea id="commentHole" rows="2" cols="30"></textarea>
+
+        <label for="bpId">blog post id:</label>
+    <textarea id="bpId" rows="2" cols="30"></textarea>
     <br/>
 
-    <label for="user_id">user id:</label>
-    <textarea id="user_id" name="user_id" rows="2" cols="20">{{user_id}}</textarea>
+    {{!-- <label for="user_id">user id:</label>
+    <textarea id="user_id" name="user_id" rows="2" cols="20">{{user_id}}</textarea> --}}
 
-    <button class="btn btn-primary" type="submit">comment</button>
+    <button type="submit" value="Submit">comment</button>
 
   </form>
 </div>
