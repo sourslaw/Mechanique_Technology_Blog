@@ -28,60 +28,79 @@ router.get('/', async (req, res) => {
 });
 
 // individual blog post route
-router.get('/blogpost/:id', async (req, res) => {
-  try {
-    const blogPostData = await Blogpost.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['username'],
-        },
-      ],
-    });
+// router.get('/blogpost/:id', async (req, res) => {
+//   try {
+//     const blogPostData = await Blogpost.findByPk(req.params.id, {
+//       include: [
+//         {
+//           model: User,
+//           attributes: ['username'],
+//         },
+//       ],
+//     });
 
-    const blogpost = blogPostData.get({ plain: true });
+//     const blogpost = blogPostData.get({ plain: true });
 
-    res.render('blogpost', {
-      ...blogpost,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     res.render('blogpost', {
+//       ...blogpost,
+//       logged_in: req.session.logged_in
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 // T E S Ting render comments too
+// router.get('/blogpost/:id', async (req, res) => {
+// 	try {
+// 	  const blogPostData = await Blogpost.findByPk(req.params.id, {
+// 		include: [
+
+// 		  {
+// 			model: User,
+// 			attributes: ['username'],
+// 		  },
+
+// 		//   {
+// 		// 	model: Comment,
+// 		// 	attributes: ['id, content'],
+// 		// 	// include: {
+// 		// 	// 	model: User,
+// 		// 	// 	attributes: ['username']
+// 		// 	// }
+// 		//   },
+
+// 		],
+// 	  });
+  
+// 	  const blogpost = blogPostData.get({ plain: true });
+  
+// 	  res.render('blogpost', {
+// 		...blogpost,
+// 		logged_in: req.session.logged_in
+// 	  });
+
+// 	} catch (err) {
+// 	  res.status(500).json(err);
+// 	}
+//   });
+
+// TESTING render commetn THREE
 router.get('/blogpost/:id', async (req, res) => {
 	try {
 	  const blogPostData = await Blogpost.findByPk(req.params.id, {
-		include: [
-
-		  {
-			model: Comment,
-			attributes: ['id, content, user_id'],
-			include: {
-				model: User,
-				attributes: ['username']
-			}
-		  },
-		  {
-			model: User,
-			attributes: ['username'],
-		  },
-		],
+		include: [ { model: Comment }, ],
 	  });
   
 	  const blogpost = blogPostData.get({ plain: true });
   
-	  res.render('blogpost', {
-		...blogpost,
-		logged_in: req.session.logged_in
-	  });
+	  res.render('blogpost', { blogpost });
 
 	} catch (err) {
 	  res.status(500).json(err);
 	}
   });
+
 
 // new createpost route (also, user's profile route). Use withAuth middleware to prevent access to route
 router.get('/createblogpost', withAuth, async (req, res) => {

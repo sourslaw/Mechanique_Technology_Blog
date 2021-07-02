@@ -24,7 +24,6 @@ const newCommentHandler = async (event) => {
         alert('Failed to maker a da commenting');
       }
 
-    // console.log(comment);
 };
 
 document

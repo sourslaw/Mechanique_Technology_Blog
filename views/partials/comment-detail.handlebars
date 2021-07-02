@@ -1,0 +1,12 @@
+<section class="card">
+	<h3>comments display</h3>
+
+	{{#each blogpost.comments as |comment|}}
+
+	<div class="dish col-md-4">
+		<p>{{ comment.content }}</p>
+		<p>{{ comment.user_id }}</p>
+	</div>
+
+	{{/each}}
+</section>
