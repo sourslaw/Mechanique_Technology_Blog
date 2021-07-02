@@ -10,7 +10,7 @@
     <p>creator: {{ user_id }}</p>
     <p>created: {{ createdAt }}</p>
 
-    <p>username: {{ username }}</p>
+    <p>username: {{ user.username }}</p>
 
   </div>
 
@@ -23,16 +23,11 @@
     <label for="commentHole">comment:</label>
     <textarea id="commentHole" rows="2" cols="30"></textarea>
 
-    {{!-- <label for="uId">user id:</label>
-    <textarea id="uId" rows="2" cols="30"></textarea> --}}
-    <label for="bpId">blog post id:</label>
-    {{!-- <textarea id="bpId" rows="1" cols="10">{{ id }}</textarea> --}}
-
+	<p>blogpost id</p>
 	<p id="bpId">{{ id }}</p>
+	<p>user id</p>
+	<p>{{ user_id }}</p>
     <br/>
-
-    {{!-- <label for="user_id">user id:</label>
-    <textarea id="user_id" name="user_id" rows="2" cols="20">{{user_id}}</textarea> --}}
 
     <button type="submit" value="Submit">comment</button>
 
