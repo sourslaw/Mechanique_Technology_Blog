@@ -6,7 +6,7 @@ const withAuth = require('../../utils/auth');
 // GET all blog posts (backend request)
 router.get('/', async (req,res) => {
   try {
-    const blogpostData = await Blogpost.findAll( { include: [{model: User}] } );
+    const blogpostData = await Blogpost.findAll( { include: [ {model: User}, {model: Comment} ] } );
   
     res.status(200).json(blogpostData);
     
