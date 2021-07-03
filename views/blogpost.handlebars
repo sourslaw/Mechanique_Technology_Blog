@@ -15,12 +15,19 @@
 	<div class="row align-items-center">
 		<h2 id="commentForm">comment form</h2>
 
+		{{#if logged_in}}
 		<div >
 			<form class="form new-comment-form">
 				<textarea id="commentHole" rows="3" cols="50" placeholder="add a comment . . ."></textarea>
 				<button class="btn btn-primary" type="submit" value="Submit">comment</button>
 			</form>
 		</div>
+		{{else}}
+		<div >
+			<textarea id="commentHole" rows="3" cols="50" placeholder="please login to comment . . ."></textarea>
+		</div>
+		{{/if}}
+
 	</div>
 </div>
 
@@ -37,11 +44,13 @@
 				<div class="card mb-3" style="max-width: 550px;">
 				<div class="row g-0">
 					<div class="col-md-4">
-					<img src="..." class="img-fluid rounded-start" alt="...">
+					{{!-- <img src="..." class="img-fluid rounded-start" alt="..."> --}}
+					{{ comment.user.username }}
 					</div>
 					<div class="col-md-8">
 					<div class="card-body">
-						<h5 class="card-title">{{ comment.user.username }}</h5><small class="text-muted">{{ comment.createdAt }}</small>
+						<h5 class="card-title">{{ comment.user.username }}</h5>
+						<p><small class="text-muted">{{ comment.createdAt }}</small></p>
 						<p class="card-text">{{ comment.content }}</p>
 					</div>
 					</div>

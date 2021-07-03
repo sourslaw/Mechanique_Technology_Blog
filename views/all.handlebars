@@ -4,13 +4,13 @@
     </div>
 
     {{#each blogposts as |blogpost|}}
-	<div class="card">
+	<div class="card" id="blogPostMain">
   		<div class="card-header">
     		by: {{ blogpost.user.username }}
   		</div>
 
 		<div class="card-body">
-			<h5 class="card-title"><a href="/blogpost/{{id}}">{{ blogpost.post_title }}</a></h5>
+			<h2 class="card-title"><a href="/blogpost/{{id}}">{{ blogpost.post_title }}</a></h2>
 			<p class="card-text">{{blogpost.content}}</p>
 			<a href="/blogpost/{{id}}" class="btn btn-primary">continue reading . . .</a>
 		</div>
