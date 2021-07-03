@@ -1,50 +1,59 @@
 
 <div class="card">
-	<div class="card-header">
-		by: {{ user.username }}, created: {{ createdAt }}, post No: <span id="bpId">{{ id }}</span>
-	</div>
-
 	<div class="card-body">
 		<h1 class="card-title">{{ post_title }}</h1>
 		<p class="card-text">{{ content }}</p>
 	</div>
+
+	<div class="card-header">
+		by: {{ user.username }}, created: {{ createdAt }}, post No: <span id="bpId">{{ id }}</span>
+	</div>
 </div>
 
-<h2>comment form</h2>
-<div>
-  <form class="form new-comment-form">
-    <textarea id="commentHole" rows="3" cols="50" placeholder="add a comment . . ."></textarea>
-    <button class="btn btn-primary" type="submit" value="Submit">comment</button>
-  </form>
+
+<div class="container">
+	<div class="row align-items-center">
+		<h2 id="commentForm">comment form</h2>
+
+		<div >
+			<form class="form new-comment-form">
+				<textarea id="commentHole" rows="3" cols="50" placeholder="add a comment . . ."></textarea>
+				<button class="btn btn-primary" type="submit" value="Submit">comment</button>
+			</form>
+		</div>
+	</div>
 </div>
+
 
 {{!-- COMMENTS --}}
 {{#if comments.length}}
-  <div class="col-md-6 blogpost-list">
 
-    <h2>recent comments</h2>
+  <div class="container">
+	  	<div class="row align-items-center">
+			<h2>recent comments</h2>
 
-    {{#each comments as |comment|}}
+			{{#each comments as |comment|}}
 
-		<div class="card mb-3" style="max-width: 550px;">
-		<div class="row g-0">
-			<div class="col-md-4">
-			<img src="..." class="img-fluid rounded-start" alt="...">
-			</div>
-			<div class="col-md-8">
-			<div class="card-body">
-				<h5 class="card-title">{{ comment.user_id }}</h5>
-				<p class="card-text">{{ comment.content }}</p>
-				{{!-- <p>by (username): {{ comment.user.id }}</p>
-				<p>by (username): {{ comment.user.username }}</p> --}}
-				<p class="card-text"><small class="text-muted">{{ comment.createdAt }}</small></p>
-			</div>
-			</div>
+				<div class="card mb-3" style="max-width: 550px;">
+				<div class="row g-0">
+					<div class="col-md-4">
+					<img src="..." class="img-fluid rounded-start" alt="...">
+					</div>
+					<div class="col-md-8">
+					<div class="card-body">
+						<h5 class="card-title">{{ comment.user_id }}</h5>
+						<p class="card-text">{{ comment.content }}</p>
+						{{!-- <p>by (username): {{ comment.user.id }}</p> --}}
+						<p>by (username): {{ comment.user.username }}</p>
+						<p class="card-text"><small class="text-muted">{{ comment.createdAt }}</small></p>
+					</div>
+					</div>
+				</div>
+				</div>
+
+			{{/each}}
+		
 		</div>
-		</div>
-
-    {{/each}}
-
   </div>
 {{/if}}
 
