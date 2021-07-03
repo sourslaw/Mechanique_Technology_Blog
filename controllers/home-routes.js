@@ -29,11 +29,16 @@ router.get('/', async (req, res) => {
 // render ind. post W/ comments
 router.get('/blogpost/:id', async (req, res) => {
 	try {
-	  const blogPostData = await Blogpost.findByPk(req.params.id, {
-		include: [ { model: Comment, }, { model: User, attributes: ['username'] }],
-	  });
+	//   const blogPostData = await Blogpost.findByPk(req.params.id, {
+	// 	include: [ { model: Comment, }, { model: User, }],
+	//   });
+
+	// test eager loading
+	const blogPostData = await Blogpost.findByPk(req.params.id, { include: { all: true, nested: true }});
   
 	  const blogpost = blogPostData.get({ plain: true });
+
+	  console.log(blogpost);
   
 	  res.render('blogpost', { ...blogpost, logged_in: req.session.logged_in });
 
