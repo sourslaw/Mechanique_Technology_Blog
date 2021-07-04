@@ -14,6 +14,24 @@ router.get('/', async (req,res) => {
 	  }
   });
 
+// api/comment/:id
+// router.get('/:id', async (req, res) => {
+// 	try {
+// 	  const commentData = await Comment.findByPk(req.params.id, {
+// 		include: [{ model: User }, { model: Comment }]
+// 	  });
+  
+// 	  if (!commentData) {
+// 		res.status(404).json({ message: 'No blog found with this id!' });
+// 		return;
+// 	  }
+  
+// 	  res.status(200).json(commentData);
+// 	} catch (err) {
+// 	  res.status(500).json(err);
+// 	}
+//   });
+
 
 
 // route to create/add a post: '/api/comment'
@@ -35,7 +53,6 @@ router.post('/', async (req, res) => {
     res.status(400).json(err);
   }
 });
-
 
 router.put('/:id', async (req, res) => {
   try {

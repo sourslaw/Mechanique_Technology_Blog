@@ -21,7 +21,14 @@
 					<button type="submit" value="Submit">
 						Submit
 					</button>
+
+					{{!-- temp TEST--}}
+					{{!-- <button type="submit" value="edit">edit</button> --}}
+
 			</form>
+				{{!-- temp testing  --}}
+				{{!-- <button type="submit" value="edit" id="editButt">edit</button> --}}
+
 		</div>
 	</div>
 </div>
@@ -36,45 +43,20 @@
 
     			{{#each blogposts as |blogpost|}}
 
-
 				<div class="card" style="width: 25rem;">
 					<div class="card-body">
 						<h5 class="card-title">{{blogpost.post_title}}</h5>
 						{{!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
 						<a href="/blogpost/{{blogpost.id}}" class="card-link">view</a>
+						<a href="" class="card-link" data-id="{{blogpost.id}}">edit</a>
 						<a href="" class="card-link" data-id="{{blogpost.id}}">delete</a>
 					</div>
 				</div>
-
-    			{{!-- <div class="row mb-2">
-      				<div class="col-md-8">
-        				<h4><a href="/blogpost/{{blogpost.id}}">{{blogpost.post_title}}</a></h4>
-      				</div>
-					<div class="col-md-4">
-						<button class="btn btn-sm btn-danger" data-id="{{blogpost.id}}">DELETE</button>
-					</div>
-    			</div> --}}
 
     			{{/each}}
   			</div>
 		</div>
 	</div>
-
-  {{!-- <div class="col-md-6 blogpost-list">
-    <h2>your previous posts:</h2>
-    {{#each blogposts as |blogpost|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/blogpost/{{blogpost.id}}">{{blogpost.post_title}}</a></h4>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{blogpost.id}}">DELETE</button>
-      </div>
-    </div>
-    {{/each}}
-  </div> --}}
-
-
 
 {{/if}}
 

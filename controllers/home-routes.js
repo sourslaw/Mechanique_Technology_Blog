@@ -47,6 +47,22 @@ router.get('/blogpost/:id', async (req, res) => {
 	}
   });
 
+
+// TESTING ind blog post but, in form . . . 
+router.get('/blogpostTEST/:id', async (req, res) => {
+	try {
+	const blogPostData = await Blogpost.findByPk(req.params.id, { include: { all: true, nested: true }});
+	  const blogpost = blogPostData.get({ plain: true });
+	  console.log(blogpost);
+  
+	  res.render('blogpostTEST', { ...blogpost, logged_in: req.session.logged_in });
+
+	} catch (err) {
+	  res.status(500).json(err);
+	}
+  });
+
+  
 // new createpost route (also, user's profile route). Use withAuth middleware to prevent access to route
 router.get('/createblogpost', withAuth, async (req, res) => {
   try {

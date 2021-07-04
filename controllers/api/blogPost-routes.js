@@ -16,7 +16,6 @@ router.get('/', async (req,res) => {
 });
 
 router.get('/:id', async (req, res) => {
-
   try {
     const blogpostData = await Blogpost.findByPk(req.params.id, {
       include: [{ model: User }, { model: Comment }]
@@ -59,7 +58,7 @@ router.put('/:id', async (req, res) => {
       {
 		post_title: req.body.post_title,
 		content: req.body.content,
-    user_id: req.body.user_id,
+    	user_id: req.session.user_id,
   },
       {
         where: {

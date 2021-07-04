@@ -1,0 +1,37 @@
+
+<div class="update-form">
+	<div class="container">
+		<div class="row">
+
+			<h1>
+				edit POST {{username}}, id: <span id="bpUpId">{{ id }}</span>
+				<span id="bpId">{{ id }}</span>
+			</h1>
+
+			<form class="update-form">
+				<div class="mb-3">
+					<label for="post_title" class="form-label">post title</label>
+					<input type="text" class="form-control" id="post_title" placeholder="{{ post_title }}">
+				</div>
+
+				<div class="mb-3">
+					<label for="content" class="form-label">post content</label>
+					{{!-- <input type="text" class="form-control" id="content" placeholder="content . . ." rows="5"> --}}
+					<textarea class="form-control" id="content" placeholder="{{ content }}" rows="10"></textarea>
+				</div>
+
+					<button type="submit" value="Submit" id="submitEdit">
+						Submit update
+					</button>
+			</form>
+
+		</div>
+	</div>
+</div>
+
+
+{{!-- COMMENTS --}}
+
+
+<script src="/js/editpost.js"></script>
+{{!-- <script src="./js/comment.js"></script> --}}
