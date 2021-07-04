@@ -11,13 +11,12 @@
 			<form class="update-form">
 				<div class="mb-3">
 					<label for="post_title" class="form-label">post title</label>
-					<input type="text" class="form-control" id="post_title" placeholder="{{ post_title }}">
+					<textarea type="text" class="form-control" id="post_title" placeholder="{{ post_title }}" rows="1">{{ post_title }}</textarea>
 				</div>
 
 				<div class="mb-3">
 					<label for="content" class="form-label">post content</label>
-					{{!-- <input type="text" class="form-control" id="content" placeholder="content . . ." rows="5"> --}}
-					<textarea class="form-control" id="content" placeholder="{{ content }}" rows="10"></textarea>
+					<textarea class="form-control" id="content" placeholder="{{ content }}" rows="10">{{ content }}</textarea>
 				</div>
 
 					<button type="submit" value="Submit" id="submitEdit">
@@ -30,8 +29,4 @@
 </div>
 
 
-{{!-- COMMENTS --}}
-
-
 <script src="/js/editpost.js"></script>
-{{!-- <script src="./js/comment.js"></script> --}}

@@ -21,13 +21,7 @@
 					<button type="submit" value="Submit">
 						Submit
 					</button>
-
-					{{!-- temp TEST--}}
-					{{!-- <button type="submit" value="edit">edit</button> --}}
-
 			</form>
-				{{!-- temp testing  --}}
-				{{!-- <button type="submit" value="edit" id="editButt">edit</button> --}}
 
 		</div>
 	</div>
@@ -48,7 +42,7 @@
 						<h5 class="card-title">{{blogpost.post_title}}</h5>
 						{{!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
 						<a href="/blogpost/{{blogpost.id}}" class="card-link">view</a>
-						<a href="" class="card-link" data-id="{{blogpost.id}}">edit</a>
+						<a href="/blogpostupdate/{{blogpost.id}}" class="card-link">edit</a>
 						<a href="" class="card-link" data-id="{{blogpost.id}}">delete</a>
 					</div>
 				</div>

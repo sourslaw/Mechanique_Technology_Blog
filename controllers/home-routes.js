@@ -29,9 +29,6 @@ router.get('/', async (req, res) => {
 // render ind. post W/ comments
 router.get('/blogpost/:id', async (req, res) => {
 	try {
-	//   const blogPostData = await Blogpost.findByPk(req.params.id, {
-	// 	include: [ { model: Comment, }, { model: User, }],
-	//   });
 
 	// test eager loading
 	const blogPostData = await Blogpost.findByPk(req.params.id, { include: { all: true, nested: true }});
@@ -49,13 +46,13 @@ router.get('/blogpost/:id', async (req, res) => {
 
 
 // TESTING ind blog post but, in form . . . 
-router.get('/blogpostTEST/:id', async (req, res) => {
+router.get('/blogpostupdate/:id', async (req, res) => {
 	try {
 	const blogPostData = await Blogpost.findByPk(req.params.id, { include: { all: true, nested: true }});
 	  const blogpost = blogPostData.get({ plain: true });
 	  console.log(blogpost);
   
-	  res.render('blogpostTEST', { ...blogpost, logged_in: req.session.logged_in });
+	  res.render('blogpostupdate', { ...blogpost, logged_in: req.session.logged_in });
 
 	} catch (err) {
 	  res.status(500).json(err);
