@@ -9,3 +9,17 @@
 a {
 	text-decoration: none;
 }
+
+#commentForm {
+	/* display: flex;
+	justify-content: center; */
+	margin-top: 5rem;
+}
+
+#commentButt {
+	margin-bottom: 5px;
+}
+
+#recentCommentContainer {
+	margin-top: 5rem;
+}

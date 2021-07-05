@@ -11,21 +11,33 @@
 </div>
 
 
-<div class="container">
+<div class="container" id="commentContainer">
 	<div class="row align-items-center">
 		<h2 id="commentForm">comment form</h2>
 
 		{{#if logged_in}}
-		<div >
-			<form class="form new-comment-form">
-				<textarea id="commentHole" rows="3" cols="50" placeholder="add a comment . . ."></textarea>
-				<button class="btn btn-primary" type="submit" value="Submit">comment</button>
-			</form>
-		</div>
+		
+		{{!-- <div> --}}
+			<div class="card">
+				<div class="card-body">
+					<form class="form new-comment-form">
+						{{!-- <textarea id="commentHole" rows="3" cols="50" placeholder="add a comment . . ."></textarea> --}}
+						{{!-- <button class="btn btn-primary" type="submit" value="Submit" id="commentButt">comment</button> --}}
+						<div class="input-group mb-3">
+  							<input type="text" class="form-control" id="commentHole" placeholder="add a comment . . .">
+  							<button class="btn btn-outline-secondary" type="submit" id="button-addon2">comment</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		{{!-- </div> --}}
+
 		{{else}}
-		<div >
+
+		<div>
 			<textarea id="commentHole" rows="3" cols="50" placeholder="please login to comment . . ."></textarea>
 		</div>
+
 		{{/if}}
 
 	</div>
@@ -35,7 +47,7 @@
 {{!-- COMMENTS --}}
 {{#if comments.length}}
 
-  <div class="container">
+  <div class="container" id="recentCommentContainer">
 	  	<div class="row align-items-center">
 			<h2>recent comments</h2>
 
@@ -45,7 +57,7 @@
 				<div class="row g-0">
 					<div class="col-md-4">
 					{{!-- <img src="..." class="img-fluid rounded-start" alt="..."> --}}
-					{{ comment.user.username }}
+					{{ comment.user.userpic }}
 					</div>
 					<div class="col-md-8">
 					<div class="card-body">
