@@ -23,3 +23,36 @@ a {
 #recentCommentContainer {
 	margin-top: 5rem;
 }
+
+.commentHead h4 {
+	color: #e07a5f;
+	font-size: 14px;
+}
+.commentHead h4,
+.commentHead h5 {
+    margin:0px;
+    display: inline-block;
+    /* padding:1em; */
+    vertical-align: top;
+    line-height: 21px;
+}
+
+.commentHead h5{
+	text-align:right;
+	padding-right:2em;
+	font-size: 12px;
+  }
+
+  #commentContent {
+    font-size: 16px;
+  }
+
+  a,
+  .nav-link {
+	  color: #3d405b;
+  }
+
+  a:hover,
+  .nav-link:hover {
+	  color: #81b29a;
+  }
