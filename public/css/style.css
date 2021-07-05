@@ -56,3 +56,11 @@ a {
   .nav-link:hover {
 	  color: #81b29a;
   }
+
+  .profPic {
+	  height: 75px;
+	  width: 75px;
+	  /* margin-left: px; */
+	  padding-top: .5rem;
+	  padding-bottom: .5rem;
+  }

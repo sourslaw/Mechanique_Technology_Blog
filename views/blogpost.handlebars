@@ -54,8 +54,13 @@
 			{{#each comments as |comment|}}
 
 				<div class="card mb-3" style="max-width: 550px;">
-					<div class="row g-0 justify-content-center">
-						<div class="col-md-4 align-self-center">{{ get_emoji }}</div>
+					<div class="row g-0 justify-content-start">
+
+						{{!-- <div class="col-md-4 align-self-center">{{ get_emoji }}</div> --}}
+						{{!-- <div class="col-md-4 align-self-center"><span for="img" aria-label="book">{{get_emoji}}</span></div> --}}
+						<div class="col-md-2 align-self-center"><img class="profPic" src="{{ get_emoji }}"></img></div>
+
+
 						<div class="col-md-8">
 						<div class="commentHead card-body">
 							<h4 class="card-title">{{ comment.user.username }}</h4>
