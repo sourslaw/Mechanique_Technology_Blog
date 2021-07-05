@@ -19,13 +19,11 @@ Blogpost.hasMany(Comment, {
     foreignKey: 'blogpost_id'
 });
 
-//test comment to user ass.
 Comment.belongsTo(User, {
     foreignKey: 'user_id'
 });
 User.hasMany(Comment, {
     foreignKey: 'user_id'
 });
-
 
 module.exports = { User, Blogpost, Comment };

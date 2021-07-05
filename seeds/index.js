@@ -6,15 +6,15 @@ const seedComment = require('./commentData');
 
 
 const seedDatabase = async () => {
-  await sequelize.sync({ force: true });
+	await sequelize.sync({ force: true });
 
-//   await seedBlogpost();
+	await seedUser();
 
-//   await seedUser();
+	await seedBlogpost();
 
-  await seedComment();
+	await seedComment();
 
-  process.exit(0);
+	process.exit(0);
 };
 
 seedDatabase();

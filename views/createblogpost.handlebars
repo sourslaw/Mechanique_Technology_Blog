@@ -11,16 +11,13 @@
 					<label for="post_title" class="form-label">post title</label>
 					<input type="text" class="form-control" id="post_title" placeholder="title . . .">
 				</div>
-
 				<div class="mb-3">
 					<label for="content" class="form-label">post content</label>
-					{{!-- <input type="text" class="form-control" id="content" placeholder="content . . ." rows="5"> --}}
 					<textarea class="form-control" id="content" placeholder="content . . ." rows="10"></textarea>
 				</div>
-
-					<button type="submit" value="Submit">
-						Submit
-					</button>
+				<button type="submit" value="Submit">
+					submit
+				</button>
 			</form>
 
 		</div>
@@ -28,15 +25,12 @@
 </div>
 
 {{#if blogposts.length}}
-
 	<div class="container">
 	  	<div class="row align-items-center">
 			<h2>your previous posts:</h2>
 
 			<div class="col-md-6 blogpost-list">
-
     			{{#each blogposts as |blogpost|}}
-
 				<div class="card" style="width: 25rem;">
 					<div class="card-body">
 						<h5 class="card-title">{{blogpost.post_title}}</h5>
@@ -46,14 +40,13 @@
 						<a href="" class="card-link" data-id="{{blogpost.id}}">delete</a>
 					</div>
 				</div>
-
     			{{/each}}
   			</div>
+
 		</div>
 	</div>
 
 {{/if}}
-
 
 
 <script src="./js/createblogpost.js"></script>

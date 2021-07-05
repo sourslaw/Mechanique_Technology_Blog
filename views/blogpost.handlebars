@@ -1,28 +1,22 @@
-
 <div class="card">
 	<div class="card-body">
 		<h1 class="card-title">{{ post_title }}</h1>
 		<p class="card-text">{{ content }}</p>
 	</div>
-
 	<div class="card-header">
 		by: {{ user.username }}, created: {{format_date createdAt }}; {{format_time createdAt }}, post No: <span id="bpId">{{ id }}</span>
 	</div>
 </div>
-
 
 <div class="container" id="commentContainer">
 	<div class="row align-items-center">
 		<h2 id="commentForm">comment form</h2>
 
 		{{#if logged_in}}
-		
-		{{!-- <div> --}}
 			<div class="card">
 				<div class="card-body">
 					<form class="form new-comment-form">
-						{{!-- <textarea id="commentHole" rows="3" cols="50" placeholder="add a comment . . ."></textarea> --}}
-						{{!-- <button class="btn btn-primary" type="submit" value="Submit" id="commentButt">comment</button> --}}
+
 						<div class="input-group mb-3">
   							<input type="text" class="form-control" id="commentHole" placeholder="add a comment . . .">
   							<button class="btn btn-outline-secondary" type="submit" id="button-addon2">comment</button>
@@ -30,52 +24,38 @@
 					</form>
 				</div>
 			</div>
-		{{!-- </div> --}}
-
 		{{else}}
-
-		<div>
-			<textarea id="commentHole" rows="3" cols="50" placeholder="please login to comment . . ."></textarea>
-		</div>
-
+			<div>
+				<textarea id="commentHole" rows="3" cols="50" placeholder="please login to comment . . ."></textarea>
+			</div>
 		{{/if}}
 
 	</div>
 </div>
 
-
 {{!-- COMMENTS --}}
 {{#if comments.length}}
-
   <div class="container" id="recentCommentContainer">
 	  	<div class="row align-items-center">
 			<h2>recent comments</h2>
 
 			{{#each comments as |comment|}}
-
 				<div class="card mb-3" style="max-width: 550px;">
 					<div class="row g-0 justify-content-start">
-
-						{{!-- <div class="col-md-4 align-self-center">{{ get_emoji }}</div> --}}
-						{{!-- <div class="col-md-4 align-self-center"><span for="img" aria-label="book">{{get_emoji}}</span></div> --}}
-						<div class="col-md-2 align-self-center"><img class="profPic" src="{{ get_emoji }}"></img></div>
-
-
-						<div class="col-md-8">
-						<div class="commentHead card-body">
-							<h4 class="card-title">{{ comment.user.username }}</h4>
-							<h5><small class="text-muted">{{format_date createdAt }}; {{format_time createdAt }}</small></h5>
-							<p class="card-text" id="commentContent">{{ comment.content }}</p>
+						<div class="col-md-2 align-self-center">
+							<img class="profPic" src="{{ get_profPic }}"></img>
 						</div>
+						<div class="col-md-8">
+							<div class="commentHead card-body">
+								<h4 class="card-title">{{ comment.user.username }}</h4>
+								<h5><small class="text-muted">{{format_date createdAt }}; {{format_time createdAt }}</small></h5>
+								<p class="card-text" id="commentContent">{{ comment.content }}</p>
+							</div>
 						</div>
 					</div>
 				</div>
-
 			{{/each}}
 		
 		</div>
   </div>
 {{/if}}
-
-
-{{!-- <script src="./js/comment.js"></script> --}}

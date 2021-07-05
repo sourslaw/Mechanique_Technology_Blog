@@ -1,4 +1,4 @@
-// temp TEST to retrieve for editing
+// edit post handler
 const editHandler = async (event) => {
 	event.preventDefault();
 
@@ -11,7 +11,6 @@ const editHandler = async (event) => {
 		body: JSON.stringify({
 		post_title,
 		content,
-		// user_id,
 		}),
 		headers: {
 		'Content-Type': 'application/json',

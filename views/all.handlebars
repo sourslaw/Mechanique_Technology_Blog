@@ -5,13 +5,11 @@
 
     {{#each blogposts as |blogpost|}}
 	<div class="card" id="blogPostMain">
-
 		<div class="card-body">
 			<h2 class="card-title"><a href="/blogpost/{{id}}">{{ blogpost.post_title }}</a></h2>
 			<p class="card-text">{{blogpost.content}}</p>
 			<a href="/blogpost/{{id}}" class="btn btn-secondary btn-sm">continue reading . . .</a>
 		</div>
-
 		<div class="card-header">
     		by: {{ blogpost.user.username }}
   		</div>
@@ -19,5 +17,3 @@
     {{/each}}
 
 </div>
-
-{{!-- <script src="/js/add-blogPost.js"></script> --}}
