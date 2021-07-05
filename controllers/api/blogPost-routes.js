@@ -34,7 +34,6 @@ router.get('/:id', async (req, res) => {
 });
 
 
-
 // route to create/add a post: '/api/blogpost'
 router.post('/', async (req, res) => {
 	console.log('you are in teh blog posting route')
