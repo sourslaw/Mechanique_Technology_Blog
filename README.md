@@ -30,6 +30,8 @@ SO THAT I can publish articles, blog posts, and my thoughts and opinions
 
 ### Installation
 - The project is uploaded to [GitHub](https://github.com/) at the following repository: [here](https://github.com/sourslaw/Technology_Blog)
+- The project is deployed via [Heroku](https://www.heroku.com/) at the following link: [here](https://salty-plateau-85850.herokuapp.com/)
+
 
 ### Usage
 ![alt text](assets/images/screenshot.gif)
