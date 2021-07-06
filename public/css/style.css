@@ -44,6 +44,11 @@ a {
     font-size: 16px;
 }
 
+#createHead {
+	font-size: 1rem;
+	color:#717175;
+}
+
 a,
 .nav-link {
 	color: #3d405b;

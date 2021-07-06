@@ -32,6 +32,10 @@ SO THAT I can publish articles, blog posts, and my thoughts and opinions
 - The project is uploaded to [GitHub](https://github.com/) at the following repository: [here](https://github.com/sourslaw/Technology_Blog)
 - The project is deployed via [Heroku](https://www.heroku.com/) at the following link: [here](https://salty-plateau-85850.herokuapp.com/)
 
+### Usage
+- Visiting the deployed [Heroku site](https://salty-plateau-85850.herokuapp.com/), the user is able to create an account via the Login link
+    - Once an account is created, the user is able to create posts, edit their posts, delete their posts, and create comments
+
 ### Credits
 - [bcrypt](https://www.npmjs.com/package/bcrypt)
 - [dotenv](https://www.npmjs.com/package/dotenv)
