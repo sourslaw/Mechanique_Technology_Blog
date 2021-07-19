@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Blogpost, Comment } = require('../../models');
+const { User, Pokemon, Sale } = require('../../models');
 
 // GET all users (backend request)
 router.get('/', async (req,res) => {
@@ -8,6 +8,16 @@ router.get('/', async (req,res) => {
 
 		res.status(200).json(userData);
 
+	} catch (err) {
+		res.status(500).json(err);
+	}
+});
+
+// back end get one user by :id
+router.get('/:id', async (req,res) => {
+	try {
+		const userData = await User.findByPk(req.params.id, { include: [ {model:Pokemon, through: Sale, as:'pokes'} ] } );
+		res.status(200).json(userData);
 	} catch (err) {
 		res.status(500).json(err);
 	}

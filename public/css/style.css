@@ -38,7 +38,8 @@ a {
 	font-size: 12px;
 }
 #commentCard {
-	height: 125px;
+	height: 150px;
+	margin: .25rem;
 }
 #commentContent {
     font-size: 16px;
