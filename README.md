@@ -30,6 +30,8 @@
 - The project is deployed via [Heroku](https://www.heroku.com/) at the following link: [here](https://salty-plateau-85850.herokuapp.com/)
 
 ### Usage
+![alt text](assets/images/screenshot_usage.gif)
+
 - Visiting the deployed [Heroku site](https://salty-plateau-85850.herokuapp.com/), the user is able to create an account via the Login link
     - Once an account is created, the user is able to create posts, edit their posts, delete their posts, and create comments
 
